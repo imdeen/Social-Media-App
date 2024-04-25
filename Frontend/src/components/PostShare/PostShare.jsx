@@ -61,7 +61,7 @@ const PostShare = () => {
 
   return (
     <div className='PostShare'>
-        <img src={user.profilePicture? serverPublic + user.profilePicture : profile} alt="profile image" style={{background: "grey"}} />
+        <img src={user.coverPicture? serverPublic + user.profilePicture : profile} alt="profile image" style={{background: "grey"}} />
         <div> <input ref={desc} required type='text' placeholder='Whats"s happening' />
       
 

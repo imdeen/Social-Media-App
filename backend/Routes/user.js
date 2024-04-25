@@ -3,6 +3,7 @@ const { getAllUsers, getUser, updateUser, deleteUser, followUser, unfollowUser }
 
 const router = express.Router();
 
+router.get('/', getAllUsers);
 router.get("/:id", getUser);
 router.put('/:id', updateUser);
 router.delete('/:id', deleteUser);

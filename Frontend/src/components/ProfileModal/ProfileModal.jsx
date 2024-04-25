@@ -5,6 +5,8 @@ import { Box, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { updateUser } from '../../actions/UserAction';
+import {uploadImage} from '../../actions/UploadAction'
 
 const style = {
     position: 'absolute',
@@ -46,8 +48,29 @@ function ProfileModal({open, setOpen, data}) {
     if(profileImage) {
       const data = new FormData();
       const fileName = Date.now() + profileImage.name;
-      data.append("name", fileName)
+      data.append("name", fileName);
+      data.append("file", profileImage);
+      UserData.profilePicture = fileName;
+      try {
+        dispatch(uploadImage(data))   
+      } catch (error) {
+        console.log(error); 
+      }
     }
+    if(coverImage){
+      const data = new FormData();
+      const fileName = Date.now() + coverImage.name;
+      data.append("name", fileName);
+      data.append("file", coverImage);
+      UserData.coverPicture = fileName;
+      try {
+        dispatch(uploadImage(data));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    dispatch(updateUser(param.id, UserData));
+    setOpen(false);
   }
   
   
